@@ -1,8 +1,6 @@
 ﻿namespace FinalAssignment_CSharp.LoginViews
-
-
 {
-    partial class StudentLoginControl
+    partial class StaffLoginControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -22,14 +20,6 @@
             base.Dispose(disposing);
         }
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.Label labelUser;
-        private System.Windows.Forms.TextBox txtStudentUserID;
-        private System.Windows.Forms.Label labelPassword;
-        private System.Windows.Forms.TextBox txtStudentPassword;
-        private System.Windows.Forms.Button btnStudentLogin;
-
         #region Component Designer generated code
 
         /// <summary> 
@@ -37,14 +27,14 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-    {
+        {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtStudentPassword = new System.Windows.Forms.TextBox();
+            this.txtStaffPassword = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.labelUser = new System.Windows.Forms.Label();
-            this.txtStudentUserID = new System.Windows.Forms.TextBox();
-            this.btnStudentLogin = new System.Windows.Forms.Button();
+            this.txtStaffUserID = new System.Windows.Forms.TextBox();
+            this.btnStaffLogin = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,12 +43,12 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.txtStudentPassword, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtStaffPassword, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.labelPassword, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelTitle, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelUser, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtStudentUserID, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnStudentLogin, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.txtStaffUserID, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnStaffLogin, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -72,15 +62,15 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(676, 513);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // txtStudentPassword
+            // txtStaffPassword
             // 
-            this.txtStudentPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtStudentPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStudentPassword.Location = new System.Drawing.Point(35, 367);
-            this.txtStudentPassword.Name = "txtStudentPassword";
-            this.txtStudentPassword.Size = new System.Drawing.Size(606, 15);
-            this.txtStudentPassword.TabIndex = 4;
-            this.txtStudentPassword.UseSystemPasswordChar = true;
+            this.txtStaffPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtStaffPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtStaffPassword.Location = new System.Drawing.Point(35, 367);
+            this.txtStaffPassword.Name = "txtStaffPassword";
+            this.txtStaffPassword.Size = new System.Drawing.Size(606, 15);
+            this.txtStaffPassword.TabIndex = 4;
+            this.txtStaffPassword.UseSystemPasswordChar = true;
             // 
             // labelPassword
             // 
@@ -101,7 +91,7 @@
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(668, 37);
             this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Student Login";
+            this.labelTitle.Text = "Staff Login";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelUser
@@ -115,42 +105,51 @@
             this.labelUser.Text = "User ID / Email :";
             this.labelUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtStudentUserID
+            // txtStaffUserID
             // 
-            this.txtStudentUserID.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtStudentUserID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStudentUserID.Location = new System.Drawing.Point(35, 195);
-            this.txtStudentUserID.Name = "txtStudentUserID";
-            this.txtStudentUserID.Size = new System.Drawing.Size(606, 15);
-            this.txtStudentUserID.TabIndex = 2;
+            this.txtStaffUserID.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtStaffUserID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtStaffUserID.Location = new System.Drawing.Point(35, 195);
+            this.txtStaffUserID.Name = "txtStaffUserID";
+            this.txtStaffUserID.Size = new System.Drawing.Size(606, 15);
+            this.txtStaffUserID.TabIndex = 2;
             // 
-            // btnStudentLogin
+            // btnStaffLogin
             // 
-            this.btnStudentLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnStudentLogin.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.btnStudentLogin.Font = new System.Drawing.Font("Myanmar Text", 10.2F, System.Drawing.FontStyle.Bold);
-            this.btnStudentLogin.Location = new System.Drawing.Point(279, 442);
-            this.btnStudentLogin.Name = "btnStudentLogin";
-            this.btnStudentLogin.Size = new System.Drawing.Size(117, 40);
-            this.btnStudentLogin.TabIndex = 5;
-            this.btnStudentLogin.Text = "Login";
-            this.btnStudentLogin.UseVisualStyleBackColor = false;
-            this.btnStudentLogin.Click += new System.EventHandler(this.btnStudentLogin_Click);
+            this.btnStaffLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStaffLogin.BackColor = System.Drawing.Color.Plum;
+            this.btnStaffLogin.Font = new System.Drawing.Font("Myanmar Text", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnStaffLogin.Location = new System.Drawing.Point(279, 442);
+            this.btnStaffLogin.Name = "btnStaffLogin";
+            this.btnStaffLogin.Size = new System.Drawing.Size(117, 40);
+            this.btnStaffLogin.TabIndex = 5;
+            this.btnStaffLogin.Text = "Login";
+            this.btnStaffLogin.UseVisualStyleBackColor = false;
+            this.btnStaffLogin.Click += new System.EventHandler(this.btnStaffLogin_Click);
             // 
-            // StudentLoginControl
+            // StaffLoginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "StudentLoginControl";
+            this.Name = "StaffLoginControl";
             this.Size = new System.Drawing.Size(676, 513);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.TextBox txtStaffUserID;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.TextBox txtStaffPassword;
+        private System.Windows.Forms.Button btnStaffLogin;
+
+
+
+        #endregion
     }
-
-
-    #endregion
-}
 }

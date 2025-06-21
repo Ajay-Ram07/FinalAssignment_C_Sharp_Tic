@@ -17,12 +17,13 @@ namespace FinalAssignment_CSharp.Controllers
             connection = conn;
         }
 
-        public User Authenticate(string email, string password)
+        public User Authenticate(string email, string password, string role)
         {
-            string query = "SELECT * FROM users WHERE email = @Email AND password = @Password";
+            string query = "SELECT * FROM users WHERE email = @Email AND password = @Password AND role = @Role"; 
             SQLiteCommand cmd = new SQLiteCommand(query, connection);
             cmd.Parameters.AddWithValue("@Email", email);
             cmd.Parameters.AddWithValue("@Password", password);
+            cmd.Parameters.AddWithValue("@Role", role);
 
             connection.Open();
             var reader = cmd.ExecuteReader();

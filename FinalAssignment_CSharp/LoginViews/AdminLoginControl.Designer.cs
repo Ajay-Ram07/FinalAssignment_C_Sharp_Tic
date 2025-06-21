@@ -1,4 +1,7 @@
-﻿namespace FinalAssignment_CSharp.LoginViews
+﻿using System;
+using System.Windows.Forms;
+
+namespace FinalAssignment_CSharp.LoginViews
 {
     partial class AdminLoginControl
     {
@@ -29,11 +32,11 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtAdminPassword = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAdminUserID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtAdminPassword = new System.Windows.Forms.TextBox();
             this.btnAdminLogin = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +67,28 @@
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
+            // txtAdminPassword
+            // 
+            this.txtAdminPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtAdminPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAdminPassword.Location = new System.Drawing.Point(35, 367);
+            this.txtAdminPassword.Name = "txtAdminPassword";
+            this.txtAdminPassword.Size = new System.Drawing.Size(606, 15);
+            this.txtAdminPassword.TabIndex = 4;
+            this.txtAdminPassword.UseSystemPasswordChar = true;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(203, 260);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(270, 51);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Password";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -91,32 +116,10 @@
             // 
             this.txtAdminUserID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtAdminUserID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAdminUserID.Location = new System.Drawing.Point(35, 191);
+            this.txtAdminUserID.Location = new System.Drawing.Point(35, 195);
             this.txtAdminUserID.Name = "txtAdminUserID";
             this.txtAdminUserID.Size = new System.Drawing.Size(606, 15);
             this.txtAdminUserID.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(203, 260);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(270, 51);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Password";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // txtAdminPassword
-            // 
-            this.txtAdminPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAdminPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAdminPassword.Location = new System.Drawing.Point(35, 367);
-            this.txtAdminPassword.Name = "txtAdminPassword";
-            this.txtAdminPassword.Size = new System.Drawing.Size(606, 15);
-            this.txtAdminPassword.TabIndex = 4;
-            this.txtAdminPassword.UseSystemPasswordChar = true;
             // 
             // btnAdminLogin
             // 
@@ -129,6 +132,7 @@
             this.btnAdminLogin.TabIndex = 5;
             this.btnAdminLogin.Text = "Login";
             this.btnAdminLogin.UseVisualStyleBackColor = false;
+            this.btnAdminLogin.Click += new System.EventHandler(this.btnAdminLogin_Click);
             // 
             // AdminLoginControl
             // 
@@ -152,5 +156,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtAdminPassword;
         private System.Windows.Forms.Button btnAdminLogin;
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            // Optional: custom drawing
+        }
+
+        private void label2_Click(object sender, EventArgs e) { }
+
+        private void label3_Click(object sender, EventArgs e) { }
+
     }
 }

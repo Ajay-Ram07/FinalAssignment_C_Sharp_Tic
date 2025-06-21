@@ -7,35 +7,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FinalAssignment_CSharp.ControlViews;
+using FinalAssignment_CSharp.Data;
 using FinalAssignment_CSharp.Models;
 
 namespace FinalAssignment_CSharp.Views
 {
     public partial class AdminDashboard : Form
     {
-        private User loggedInUser;
+        private User _loggedInUser;
         public AdminDashboard(User user)
         {
             InitializeComponent();
-            loggedInUser = user;
-
+            _loggedInUser = user;
         }
 
-        private void AdminDashboard_Load(object sender, EventArgs e)
+        private void btnRegisterUser_Click(object sender, EventArgs e)
         {
-            lblWelcome.Text = $"Welcome, {loggedInUser.Name}! You're Logged in as {loggedInUser.Role}.";
-            lblDateTime.Text = $"Date : {DateTime.Now.ToShortDateString()} | Time : {DateTime.Now.ToShortTimeString()}";
+            panelMain.Controls.Clear();
+            RegisterUserControl uc = new RegisterUserControl(DataBase.GetConnection());
+            uc.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(uc);
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void btnMarks_Click(object sender, EventArgs e)
         {
-            this.Close();
-            Application.Restart();
+            panelMain.Controls.Clear();
+            ManageMarksUserControl marksUC = new ManageMarksUserControl(DataBase.GetConnection());
+            marksUC.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(marksUC);
         }
 
-        private void lblWelcome_Click(object sender, EventArgs e)
+        private void btnCourses_Click(object sender, EventArgs e)
         {
-
+            panelMain.Controls.Clear();
+            ManageCoursesUserControl courseUC = new ManageCoursesUserControl(DataBase.GetConnection());
+            courseUC.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(courseUC);
         }
     }
 }

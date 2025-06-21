@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FinalAssignment_CSharp.Data;
 using FinalAssignment_CSharp.LoginViews;
 
 namespace FinalAssignment_CSharp.Views
@@ -16,6 +17,7 @@ namespace FinalAssignment_CSharp.Views
         public LoginFormFinal()
         {
             InitializeComponent();
+            DataBaseInitializer.InitializeDatabase();
         }
 
         private void lblTittle_Click(object sender, EventArgs e)
@@ -44,10 +46,7 @@ namespace FinalAssignment_CSharp.Views
             }
         }
 
-        private void panelCenter_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+     
 
         private void rdoStudent_CheckedChanged(object sender, EventArgs e)
         {
@@ -60,6 +59,32 @@ namespace FinalAssignment_CSharp.Views
 
                 panelCenter.Controls.Add(studentLogin);
 
+            }
+        }
+
+        private void rdoLecturer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoLecturer.Checked)
+            {
+                panelCenter.Controls.Clear();
+
+                LecturerLoginControl lecturerLogin = new LecturerLoginControl();
+                lecturerLogin.Dock = DockStyle.Fill;
+
+                panelCenter.Controls.Add(lecturerLogin);
+            }
+        }
+
+        private void rdoStaff_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoStaff.Checked)
+            {
+                panelCenter.Controls.Clear();
+
+                StaffLoginControl staffLogin = new StaffLoginControl();
+                staffLogin.Dock = DockStyle.Fill;
+
+                panelCenter.Controls.Add(staffLogin);
             }
         }
     }

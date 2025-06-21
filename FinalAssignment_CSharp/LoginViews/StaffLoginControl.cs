@@ -12,32 +12,34 @@ using FinalAssignment_CSharp.Data;
 
 namespace FinalAssignment_CSharp.LoginViews
 {
-    public partial class StudentLoginControl : UserControl
+    public partial class StaffLoginControl : UserControl
     {
-
         private LoginController loginController;
-        public StudentLoginControl()
+
+        public StaffLoginControl()
         {
+
             InitializeComponent();
             loginController = new LoginController(DataBase.GetConnection());
         }
 
-        private void btnStudentLogin_Click(object sender, EventArgs e)
+        private void btnStaffLogin_Click(object sender, EventArgs e)
         {
-            string email = txtStudentUserID.Text.Trim();
-            string password = txtStudentPassword.Text.Trim();
+            string email = txtStaffUserID.Text.Trim();
+            string password = txtStaffPassword.Text.Trim();
 
-            var user = loginController.Authenticate(email, password, "student");
+            var user = loginController.Authenticate(email, password, "staff");
 
             if (user != null)
             {
-                MessageBox.Show("Login Success!");
-                // new StaffDashboard(user).Show();
+                MessageBox.Show("Login successful!");
+                // new StaffDashboard(user).Show(); // if dashboard is ready
             }
             else
             {
-                MessageBox.Show("Invalid Staff credentials.");
+                MessageBox.Show("Invalid staff credentials!");
             }
         }
+
     }
 }
