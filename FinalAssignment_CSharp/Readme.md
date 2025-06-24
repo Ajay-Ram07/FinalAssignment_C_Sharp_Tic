@@ -99,7 +99,7 @@ The application supports multiple user roles (Admin, Student, Lecturer, Staff) w
 
 4. Run the project; the SQLite database initializes automatically on first run.
 
-5. Use the Admin login to access the dashboard and test functionalities.
+5. Use the Admin login to access the dashboard and test functionalities.[username - ajay , password - 123456]
 
 Conclusion
 This project demonstrates foundational skills in C# Windows Forms development, database handling with SQLite, and software design principles necessary for academic and practical software projects. It’s a solid base for future enhancements and real-world applications.
