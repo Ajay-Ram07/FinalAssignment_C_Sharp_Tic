@@ -45,5 +45,30 @@ namespace FinalAssignment_CSharp.Views
             courseUC.Dock = DockStyle.Fill;
             panelMain.Controls.Add(courseUC);
         }
+
+        private void btnTimetable_Click(object sender, EventArgs e)
+        {
+            panelMain.Controls.Clear();
+            TimetableUserControl timetableUC = new TimetableUserControl(DataBase.GetConnection());
+            timetableUC.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(timetableUC);
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                // Close current dashboard
+                this.Hide();
+                Application.Exit();
+
+                // Open login form again
+                //LoginFormFinal loginForm = new LoginFormFinal();
+                //loginForm.Show();
+            }
+        }
+
     }
 }

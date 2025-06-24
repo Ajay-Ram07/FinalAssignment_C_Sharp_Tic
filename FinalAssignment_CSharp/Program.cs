@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FinalAssignment_CSharp.Data;
 using FinalAssignment_CSharp.Views;
 
 namespace FinalAssignment_CSharp
@@ -15,6 +16,8 @@ namespace FinalAssignment_CSharp
         [STAThread]
         static void Main()
         {
+            DataBaseInitializer.InitializeDatabase();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginFormFinal());

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Data.SQLite;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FinalAssignment_CSharp.Data
 {
@@ -63,16 +65,12 @@ namespace FinalAssignment_CSharp.Data
 
                 // STUDENTS TABLE
                 command.CommandText = @"
-                        CREATE TABLE IF NOT EXISTS students (
+                    CREATE TABLE students (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        user_id INTEGER,
-                        student_number TEXT,
-                        name TEXT,
-                        course TEXT,
-                        lecturer TEXT,
-                        FOREIGN KEY(user_id) REFERENCES users(id)
-                        );";
-                command.ExecuteNonQuery();
+                        name TEXT NOT NULL,
+                        course TEXT
+                    );";
+
 
                 // MARKS TABLE
                 command.CommandText = @"
@@ -85,6 +83,49 @@ namespace FinalAssignment_CSharp.Data
                     mark INTEGER
                 );";
                 command.ExecuteNonQuery();
+
+
+                // LECTURERS TABLE
+                command.CommandText = @"
+                    CREATE TABLE IF NOT EXISTS lecturers (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        user_id INTEGER,
+                        name TEXT,
+                        department TEXT,
+                        FOREIGN KEY(user_id) REFERENCES users(id)
+                    );";
+                                command.ExecuteNonQuery();
+
+                // STAFF TABLE
+                command.CommandText = @"
+                    CREATE TABLE IF NOT EXISTS staff (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        user_id INTEGER,
+                        name TEXT,
+                        position TEXT,
+                        FOREIGN KEY(user_id) REFERENCES users(id)
+                    );";
+                command.ExecuteNonQuery();
+
+                command.CommandText = @"
+                    INSERT OR IGNORE INTO courses (course_name, created_at, updated_at)
+                    VALUES 
+                    ('Computer Science', datetime('now'), datetime('now')),
+                    ('Software Engineering', datetime('now'), datetime('now')),
+                    ('Data Science', datetime('now'), datetime('now'))";
+                command.ExecuteNonQuery();
+
+
+                command.CommandText = @"CREATE TABLE IF NOT EXISTS timetable (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    day TEXT NOT NULL,
+                    time TEXT NOT NULL,
+                    subject TEXT NOT NULL,
+                    lecturer TEXT NOT NULL,
+                    room TEXT NOT NULL);";
+                command.ExecuteNonQuery();
+
+
 
 
                 // All other table creation code...

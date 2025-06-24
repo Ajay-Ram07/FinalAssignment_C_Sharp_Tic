@@ -46,9 +46,9 @@ namespace FinalAssignment_CSharp.Views
             }
         }
 
-     
 
-        private void rdoStudent_CheckedChanged(object sender, EventArgs e)
+
+        /*private void rdoStudent_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoStudent.Checked)
             {
@@ -86,6 +86,43 @@ namespace FinalAssignment_CSharp.Views
 
                 panelCenter.Controls.Add(staffLogin);
             }
+        }*/
+
+        private void rdoStudent_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoStudent.Checked)
+            {
+                MessageBox.Show("Student login is under maintenance.\nPlease try again later.",
+                                "Maintenance Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                rdoAdmin.Checked = true; // fallback to Admin
+            }
         }
+
+        private void rdoLecturer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoLecturer.Checked)
+            {
+                MessageBox.Show("Lecturer login is under maintenance.\nPlease try again later.",
+                                "Maintenance Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                rdoAdmin.Checked = true;
+            }
+        }
+
+        private void rdoStaff_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoStaff.Checked)
+            {
+                MessageBox.Show("Staff login is under maintenance.\nPlease try again later.",
+                                "Maintenance Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                rdoAdmin.Checked = true;
+            }
+        }
+
     }
 }

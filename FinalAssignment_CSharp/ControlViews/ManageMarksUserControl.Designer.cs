@@ -160,6 +160,8 @@ namespace FinalAssignment_CSharp.ControlViews
             this.labelMark.Size = new System.Drawing.Size(65, 22);
             this.labelMark.TabIndex = 10;
             this.labelMark.Text = "Mark:";
+
+
             // 
             // txtMark
             // 
@@ -240,7 +242,7 @@ namespace FinalAssignment_CSharp.ControlViews
 
             string selectedCourse = cmbCourse.SelectedItem.ToString();
 
-            string query = "SELECT id, student_number, name FROM students WHERE course = @course";
+            string query = "SELECT * FROM marks WHERE course = @course";
             SQLiteCommand cmd = new SQLiteCommand(query, connection);
             cmd.Parameters.AddWithValue("@course", selectedCourse);
 
@@ -253,17 +255,21 @@ namespace FinalAssignment_CSharp.ControlViews
             dataGridMarks.DataSource = dt;
         }
 
+
+
         private void dataGridMarks_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridMarks.Rows[e.RowIndex];
-                txtStudentId.Text = row.Cells["student_id"].Value.ToString();
-                txtStudentName.Text = row.Cells["student_name"].Value.ToString();
-                cmbSubject.SelectedItem = row.Cells["subject"].Value.ToString();
-                txtMark.Text = row.Cells["mark"].Value.ToString();
+
+                txtStudentId.Text = row.Cells["student_id"].Value?.ToString();
+                txtStudentName.Text = row.Cells["student_name"].Value?.ToString();
+                cmbSubject.Text = row.Cells["subject"].Value?.ToString();
+                txtMark.Text = row.Cells["mark"].Value?.ToString();
             }
         }
+
 
         private void btnAddMark_Click(object sender, EventArgs e)
         {
@@ -298,15 +304,17 @@ namespace FinalAssignment_CSharp.ControlViews
             btnLoad_Click(null, null); // reload grid
         }
 
+
+        private int selectedMarkId = -1;
+
         private void btnUpdateMark_Click(object sender, EventArgs e)
         {
-            if (dataGridMarks.CurrentRow == null)
+            if (selectedMarkId == -1)
             {
-                MessageBox.Show("Select a mark entry to update.");
+                MessageBox.Show("Please select a mark entry to update.");
                 return;
             }
 
-            int markId = Convert.ToInt32(dataGridMarks.CurrentRow.Cells["id"].Value);
             string subject = cmbSubject.SelectedItem?.ToString();
             int mark = int.Parse(txtMark.Text.Trim());
 
@@ -314,7 +322,7 @@ namespace FinalAssignment_CSharp.ControlViews
             SQLiteCommand cmd = new SQLiteCommand(query, connection);
             cmd.Parameters.AddWithValue("@subject", subject);
             cmd.Parameters.AddWithValue("@mark", mark);
-            cmd.Parameters.AddWithValue("@id", markId);
+            cmd.Parameters.AddWithValue("@id", selectedMarkId);
 
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -323,6 +331,7 @@ namespace FinalAssignment_CSharp.ControlViews
             MessageBox.Show("Mark updated!");
             btnLoad_Click(null, null); // Reload table
         }
+
 
         private void btnDeleteMark_Click(object sender, EventArgs e)
         {

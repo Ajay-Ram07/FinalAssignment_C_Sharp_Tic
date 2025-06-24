@@ -22,7 +22,22 @@ namespace FinalAssignment_CSharp.ControlViews
 
         private void ManageMarksUserControl_Load(object sender, EventArgs e)
         {
-
+            LoadSubject();
         }
+
+        private void LoadSubject()
+        {
+            cmbSubject.Items.Clear();
+            cmbSubject.Items.AddRange(new object[]
+            {
+                "Mathematics",
+                "Computer Networks",
+                "Data Structures",
+                "Database Systems",
+                "Web Development"
+            });
+        }
+
+
     }
 }

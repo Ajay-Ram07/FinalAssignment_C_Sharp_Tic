@@ -19,5 +19,21 @@ namespace FinalAssignment_CSharp.ControlViews
             InitializeComponent();
             connection = conn;
         }
+
+        private void cmbCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridStudents.Rows[e.RowIndex];
+                txtStudentId.Text = row.Cells["id"].Value.ToString();
+                txtStudentName.Text = row.Cells["name"].Value.ToString();
+                cmbCourse.SelectedItem = row.Cells["course"].Value?.ToString(); // might be empty
+            }
+        }
     }
 }

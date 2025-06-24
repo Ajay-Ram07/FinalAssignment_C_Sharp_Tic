@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
 
 namespace FinalAssignment_CSharp.ControlViews
 {
     public partial class RegisterUserControl : UserControl
     {
-
         private SQLiteConnection connection;
         private int selectedUserId = -1;
+
+        // Change this as needed or get dynamically from UI
+        private string defaultCourseForStudent = "Data Science";
+
         public RegisterUserControl(SQLiteConnection conn)
         {
             InitializeComponent();
@@ -27,8 +22,8 @@ namespace FinalAssignment_CSharp.ControlViews
 
         private void LoadUsers()
         {
-            string query = "SELECT id, name, email, role FROM users";
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(query,connection);
+            string query = "SELECT id, name, role FROM users";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             dataGridUsers.DataSource = dt;
@@ -37,120 +32,18 @@ namespace FinalAssignment_CSharp.ControlViews
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string name = txtName.Text.Trim();
-            string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
             string role = cmbRole.Text.Trim();
 
-            string query = "INSERT INTO users (name, email, password, role, created_at, updated_at) VALUES (@name, @email, @pass, @role, @cAt, @uAt)";
-            SQLiteCommand cmd = new SQLiteCommand(query, connection);
-            cmd.Parameters.AddWithValue("@name", name);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@pass", password);
-            cmd.Parameters.AddWithValue("@role", role);
-            cmd.Parameters.AddWithValue("@cAt", DateTime.Now.ToString());
-            cmd.Parameters.AddWithValue("@uAt", DateTime.Now.ToString());
-
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-
-            MessageBox.Show("User added successfully.");
-            LoadUsers();
-            ClearForm();
-
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (selectedUserId == -1) return;
-
-            string name = txtName.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string role = cmbRole.Text;
-
-            string query = "UPDATE users SET name = @name, email = @email, role = @role, updated_at = @uAt WHERE id = @id";
-            SQLiteCommand cmd = new SQLiteCommand(query, connection);
-            cmd.Parameters.AddWithValue("@name", name);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@role", role);
-            cmd.Parameters.AddWithValue("@uAt", DateTime.Now.ToString());
-            cmd.Parameters.AddWithValue("@id", selectedUserId);
-
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-
-            MessageBox.Show("User updated.");
-            LoadUsers();
-            ClearForm();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (selectedUserId == -1) return;
-
-            string query = "DELETE FROM users WHERE id = @id";
-            SQLiteCommand cmd = new SQLiteCommand(query, connection);
-            cmd.Parameters.AddWithValue("@id", selectedUserId);
-
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-
-            MessageBox.Show("User deleted.");
-            LoadUsers();
-            ClearForm();
-        }
-
-
-        private void dataGridUsers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridUsers.Rows[e.RowIndex];
-
-                if (row.Cells["id"].Value != null)
-                {
-                    selectedUserId = Convert.ToInt32(row.Cells["id"].Value);
-                    txtName.Text = row.Cells["name"].Value.ToString();
-                    txtEmail.Text = row.Cells["email"].Value.ToString();
-                    cmbRole.Text = row.Cells["role"].Value.ToString();
-
-                    // Debug
-                    MessageBox.Show("Selected ID = " + selectedUserId);
-                }
-                else
-                {
-                    MessageBox.Show("Selected row has no ID value.");
-                }
-            }
-        }
-
-
-        private void ClearForm()
-        {
-            txtName.Text = txtEmail.Text = txtPassword.Text = "";
-            cmbRole.SelectedIndex = -1;
-            selectedUserId = -1;
-        }
-
-        private void btnAdd_Click_1(object sender, EventArgs e)
-        {
-            string name = txtName.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string password = txtPassword.Text.Trim();
-            string role = cmbRole.Text.Trim();
-
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(role))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(role))
             {
                 MessageBox.Show("Please fill all fields.");
                 return;
             }
 
-            string query = "INSERT INTO users (name, email, password, role, created_at, updated_at) VALUES (@name, @email, @pass, @role, @cAt, @uAt)";
+            string query = "INSERT INTO users (name, password, role, created_at, updated_at) VALUES (@name, @pass, @role, @cAt, @uAt)";
             SQLiteCommand cmd = new SQLiteCommand(query, connection);
             cmd.Parameters.AddWithValue("@name", name);
-            cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@pass", password);
             cmd.Parameters.AddWithValue("@role", role);
             cmd.Parameters.AddWithValue("@cAt", DateTime.Now.ToString());
@@ -160,6 +53,54 @@ namespace FinalAssignment_CSharp.ControlViews
             {
                 connection.Open();
                 cmd.ExecuteNonQuery();
+
+                //Get the last inserted user ID
+                long userId = connection.LastInsertRowId;
+
+                if (role.ToLower() == "student")
+                {
+                    string course = defaultCourseForStudent; // Or get dynamically
+
+                    // Insert into students table with course
+                    string studentInsert = "INSERT INTO students (name, course) VALUES (@name, @course)";
+                    SQLiteCommand studentCmd = new SQLiteCommand(studentInsert, connection);
+                    studentCmd.Parameters.AddWithValue("@name", name);
+                    studentCmd.Parameters.AddWithValue("@course", course);
+                    studentCmd.ExecuteNonQuery();
+
+                    //Get the student_id back (auto-generated ID)
+                    long newStudentId = connection.LastInsertRowId;
+
+                    // Add a default subject and mark to the 'marks' table (optional)
+                    string defaultSubject = "Introduction";
+                    int defaultMark = 0;
+
+                    string markInsert = "INSERT INTO marks (student_id, student_name, course, subject, mark) VALUES (@sid, @sname, @course, @subject, @mark)";
+                    SQLiteCommand markCmd = new SQLiteCommand(markInsert, connection);
+                    markCmd.Parameters.AddWithValue("@sid", newStudentId);
+                    markCmd.Parameters.AddWithValue("@sname", name);
+                    markCmd.Parameters.AddWithValue("@course", course);
+                    markCmd.Parameters.AddWithValue("@subject", defaultSubject);
+                    markCmd.Parameters.AddWithValue("@mark", defaultMark);
+                    markCmd.ExecuteNonQuery();
+                }
+                else if (role.ToLower() == "lecturer")
+                {
+                    string lecturerInsert = "INSERT INTO lecturers (user_id, name, department) VALUES (@userId, @name, '')";
+                    SQLiteCommand lecCmd = new SQLiteCommand(lecturerInsert, connection);
+                    lecCmd.Parameters.AddWithValue("@userId", userId);
+                    lecCmd.Parameters.AddWithValue("@name", name);
+                    lecCmd.ExecuteNonQuery();
+                }
+                else if (role.ToLower() == "staff")
+                {
+                    string staffInsert = "INSERT INTO staff (user_id, name, position) VALUES (@userId, @name, '')";
+                    SQLiteCommand staffCmd = new SQLiteCommand(staffInsert, connection);
+                    staffCmd.Parameters.AddWithValue("@userId", userId);
+                    staffCmd.Parameters.AddWithValue("@name", name);
+                    staffCmd.ExecuteNonQuery();
+                }
+
                 MessageBox.Show("User added successfully.");
                 LoadUsers();
                 ClearForm();
@@ -170,12 +111,12 @@ namespace FinalAssignment_CSharp.ControlViews
             }
             finally
             {
-                if (connection.State == ConnectionState.Open)
+                if (connection.State == System.Data.ConnectionState.Open)
                     connection.Close();
             }
         }
 
-        private void btnUpdate_Click_1(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedUserId == -1)
             {
@@ -184,19 +125,17 @@ namespace FinalAssignment_CSharp.ControlViews
             }
 
             string name = txtName.Text.Trim();
-            string email = txtEmail.Text.Trim();
             string role = cmbRole.Text.Trim();
 
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(role))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(role))
             {
                 MessageBox.Show("Please fill all fields before updating.");
                 return;
             }
 
-            string query = "UPDATE users SET name = @name, email = @email, role = @role, updated_at = @uAt WHERE id = @id";
+            string query = "UPDATE users SET name = @name, role = @role, updated_at = @uAt WHERE id = @id";
             SQLiteCommand cmd = new SQLiteCommand(query, connection);
             cmd.Parameters.AddWithValue("@name", name);
-            cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@role", role);
             cmd.Parameters.AddWithValue("@uAt", DateTime.Now.ToString());
             cmd.Parameters.AddWithValue("@id", selectedUserId);
@@ -215,12 +154,12 @@ namespace FinalAssignment_CSharp.ControlViews
             }
             finally
             {
-                if (connection.State == ConnectionState.Open)
+                if (connection.State == System.Data.ConnectionState.Open)
                     connection.Close();
             }
         }
 
-        private void btnDelete_Click_1(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedUserId == -1)
             {
@@ -249,9 +188,31 @@ namespace FinalAssignment_CSharp.ControlViews
             }
             finally
             {
-                if (connection.State == ConnectionState.Open)
+                if (connection.State == System.Data.ConnectionState.Open)
                     connection.Close();
             }
+        }
+
+        private void dataGridUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridUsers.Rows[e.RowIndex];
+
+                if (row.Cells["id"].Value != null)
+                {
+                    selectedUserId = Convert.ToInt32(row.Cells["id"].Value);
+                    txtName.Text = row.Cells["name"].Value.ToString();
+                    cmbRole.Text = row.Cells["role"].Value.ToString();
+                }
+            }
+        }
+
+        private void ClearForm()
+        {
+            txtName.Text = txtPassword.Text = "";
+            cmbRole.SelectedIndex = -1;
+            selectedUserId = -1;
         }
     }
 }

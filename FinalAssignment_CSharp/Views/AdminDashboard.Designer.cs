@@ -41,7 +41,6 @@ namespace FinalAssignment_CSharp.Views
             this.btnTimetable = new System.Windows.Forms.Button();
             this.btnRegisterUser = new System.Windows.Forms.Button();
             this.btnCourses = new System.Windows.Forms.Button();
-            this.btnSubjects = new System.Windows.Forms.Button();
             this.btnMarks = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -58,7 +57,6 @@ namespace FinalAssignment_CSharp.Views
             this.panelSidebar.Controls.Add(this.btnTimetable);
             this.panelSidebar.Controls.Add(this.btnRegisterUser);
             this.panelSidebar.Controls.Add(this.btnCourses);
-            this.panelSidebar.Controls.Add(this.btnSubjects);
             this.panelSidebar.Controls.Add(this.btnMarks);
             this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSidebar.Location = new System.Drawing.Point(0, 0);
@@ -73,6 +71,7 @@ namespace FinalAssignment_CSharp.Views
             this.btnLogout.Size = new System.Drawing.Size(151, 47);
             this.btnLogout.TabIndex = 0;
             this.btnLogout.Text = "Logout";
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnDashboard
             // 
@@ -84,11 +83,12 @@ namespace FinalAssignment_CSharp.Views
             // 
             // btnTimetable
             // 
-            this.btnTimetable.Location = new System.Drawing.Point(12, 426);
+            this.btnTimetable.Location = new System.Drawing.Point(12, 387);
             this.btnTimetable.Name = "btnTimetable";
             this.btnTimetable.Size = new System.Drawing.Size(151, 46);
             this.btnTimetable.TabIndex = 1;
             this.btnTimetable.Text = "Timetable";
+            this.btnTimetable.Click += new System.EventHandler(this.btnTimetable_Click);
             // 
             // btnRegisterUser
             // 
@@ -107,14 +107,6 @@ namespace FinalAssignment_CSharp.Views
             this.btnCourses.TabIndex = 4;
             this.btnCourses.Text = "Manage Courses";
             this.btnCourses.Click += new System.EventHandler(this.btnCourses_Click);
-            // 
-            // btnSubjects
-            // 
-            this.btnSubjects.Location = new System.Drawing.Point(12, 372);
-            this.btnSubjects.Name = "btnSubjects";
-            this.btnSubjects.Size = new System.Drawing.Size(151, 48);
-            this.btnSubjects.TabIndex = 3;
-            this.btnSubjects.Text = "Manage Subjects";
             // 
             // btnMarks
             // 
@@ -206,7 +198,6 @@ namespace FinalAssignment_CSharp.Views
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnRegisterUser;
         private System.Windows.Forms.Button btnCourses;
-        private System.Windows.Forms.Button btnSubjects;
         private System.Windows.Forms.Button btnMarks;
         private System.Windows.Forms.Button btnTimetable;
         private System.Windows.Forms.Button btnLogout;

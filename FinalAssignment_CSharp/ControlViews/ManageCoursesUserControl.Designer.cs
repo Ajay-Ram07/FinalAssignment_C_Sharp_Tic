@@ -45,76 +45,84 @@ namespace FinalAssignment_CSharp.ControlViews
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridStudents = new System.Windows.Forms.DataGridView();
-
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStudents)).BeginInit();
             this.SuspendLayout();
-
+            // 
             // labelId
+            // 
             this.labelId.AutoSize = true;
             this.labelId.Location = new System.Drawing.Point(30, 20);
             this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(75, 17);
+            this.labelId.Size = new System.Drawing.Size(71, 16);
             this.labelId.TabIndex = 0;
             this.labelId.Text = "Student ID:";
-
+            // 
             // txtStudentId
+            // 
             this.txtStudentId.Location = new System.Drawing.Point(150, 20);
             this.txtStudentId.Name = "txtStudentId";
             this.txtStudentId.Size = new System.Drawing.Size(250, 22);
             this.txtStudentId.TabIndex = 1;
-
+            // 
             // labelName
+            // 
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(30, 60);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(99, 17);
+            this.labelName.Size = new System.Drawing.Size(95, 16);
             this.labelName.TabIndex = 2;
             this.labelName.Text = "Student Name:";
-
+            // 
             // txtStudentName
+            // 
             this.txtStudentName.Location = new System.Drawing.Point(150, 60);
             this.txtStudentName.Name = "txtStudentName";
             this.txtStudentName.Size = new System.Drawing.Size(250, 22);
             this.txtStudentName.TabIndex = 3;
-
+            // 
             // labelCourse
+            // 
             this.labelCourse.AutoSize = true;
             this.labelCourse.Location = new System.Drawing.Point(30, 100);
             this.labelCourse.Name = "labelCourse";
-            this.labelCourse.Size = new System.Drawing.Size(57, 17);
+            this.labelCourse.Size = new System.Drawing.Size(53, 16);
             this.labelCourse.TabIndex = 4;
             this.labelCourse.Text = "Course:";
-
+            // 
             // cmbCourse
+            // 
             this.cmbCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCourse.FormattingEnabled = true;
             this.cmbCourse.Items.AddRange(new object[] {
-        "Computer Science",
-        "Software Engineering",
-        "Information Technology",
-        "Cybersecurity",
-        "Data Science"
-    });
+            "Computer Science",
+            "Software Engineering",
+            "Information Technology",
+            "Cybersecurity",
+            "Data Science"});
             this.cmbCourse.Location = new System.Drawing.Point(150, 100);
             this.cmbCourse.Name = "cmbCourse";
             this.cmbCourse.Size = new System.Drawing.Size(250, 24);
             this.cmbCourse.TabIndex = 5;
-
+            this.cmbCourse.SelectedIndexChanged += new System.EventHandler(this.cmbCourse_SelectedIndexChanged);
+            // 
             // labelLecturer
+            // 
             this.labelLecturer.AutoSize = true;
             this.labelLecturer.Location = new System.Drawing.Point(30, 140);
             this.labelLecturer.Name = "labelLecturer";
-            this.labelLecturer.Size = new System.Drawing.Size(65, 17);
+            this.labelLecturer.Size = new System.Drawing.Size(58, 16);
             this.labelLecturer.TabIndex = 6;
             this.labelLecturer.Text = "Lecturer:";
-
+            // 
             // txtLecturer
+            // 
             this.txtLecturer.Location = new System.Drawing.Point(150, 140);
             this.txtLecturer.Name = "txtLecturer";
             this.txtLecturer.Size = new System.Drawing.Size(250, 22);
             this.txtLecturer.TabIndex = 7;
-
+            // 
             // btnAdd
+            // 
             this.btnAdd.Location = new System.Drawing.Point(30, 190);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 30);
@@ -122,8 +130,9 @@ namespace FinalAssignment_CSharp.ControlViews
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-
+            // 
             // btnUpdate
+            // 
             this.btnUpdate.Location = new System.Drawing.Point(130, 190);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 30);
@@ -131,8 +140,9 @@ namespace FinalAssignment_CSharp.ControlViews
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-
+            // 
             // btnDelete
+            // 
             this.btnDelete.Location = new System.Drawing.Point(230, 190);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 30);
@@ -140,10 +150,14 @@ namespace FinalAssignment_CSharp.ControlViews
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-
+            // 
             // dataGridStudents
+            // 
             this.dataGridStudents.AllowUserToAddRows = false;
             this.dataGridStudents.AllowUserToDeleteRows = false;
+            this.dataGridStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridStudents.Location = new System.Drawing.Point(30, 240);
             this.dataGridStudents.MultiSelect = false;
@@ -154,9 +168,10 @@ namespace FinalAssignment_CSharp.ControlViews
             this.dataGridStudents.Size = new System.Drawing.Size(700, 300);
             this.dataGridStudents.TabIndex = 11;
             this.dataGridStudents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridStudents_CellClick);
-            this.dataGridStudents.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-            // UserControl
+            this.dataGridStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridStudents_CellContentClick);
+            // 
+            // ManageCoursesUserControl
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelId);
@@ -171,13 +186,13 @@ namespace FinalAssignment_CSharp.ControlViews
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dataGridStudents);
-            this.Name = "ManageMarksUserControl";
+            this.Name = "ManageCoursesUserControl";
             this.Size = new System.Drawing.Size(800, 600);
             this.Load += new System.EventHandler(this.ManageMarksUserControl_Load);
-
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStudents)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -215,33 +230,27 @@ namespace FinalAssignment_CSharp.ControlViews
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (selectedMarkId == -1)
+            if (string.IsNullOrEmpty(txtStudentId.Text) || cmbCourse.SelectedItem == null)
             {
-                MessageBox.Show("Select a record to update.");
+                MessageBox.Show("Please select a student and a course.");
                 return;
             }
 
-            string id = txtStudentId.Text.Trim();
-            string name = txtStudentName.Text.Trim();
-            string course = cmbCourse.Text.Trim();
-            string lecturer = txtLecturer.Text.Trim();
+            int id = Convert.ToInt32(txtStudentId.Text);
+            string course = cmbCourse.SelectedItem.ToString();
 
-            string query = "UPDATE marks SET student_id = @id, student_name = @name, course_name = @course, lecturer = @lecturer, updated_at = @updated WHERE id = @markId";
+            string query = "UPDATE students SET course = @course WHERE id = @id";
             SQLiteCommand cmd = new SQLiteCommand(query, connection);
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("@name", name);
             cmd.Parameters.AddWithValue("@course", course);
-            cmd.Parameters.AddWithValue("@lecturer", lecturer);
-            cmd.Parameters.AddWithValue("@updated", DateTime.Now.ToString());
-            cmd.Parameters.AddWithValue("@markId", selectedMarkId);
+            cmd.Parameters.AddWithValue("@id", id);
 
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
 
-            MessageBox.Show("Mark record updated.");
-            LoadMarks();
-            ClearForm();
+            MessageBox.Show("Course updated successfully.");
+            LoadStudents(); // Refresh the grid
+        
         }
 
 
@@ -272,16 +281,12 @@ namespace FinalAssignment_CSharp.ControlViews
             {
                 DataGridViewRow row = dataGridStudents.Rows[e.RowIndex];
 
-                if (row.Cells["id"].Value != null)
-                {
-                    selectedMarkId = Convert.ToInt32(row.Cells["id"].Value);
-                    txtStudentId.Text = row.Cells["student_id"].Value.ToString();
-                    txtStudentName.Text = row.Cells["student_name"].Value.ToString();
-                    cmbCourse.Text = row.Cells["course_name"].Value.ToString();
-                    txtLecturer.Text = row.Cells["lecturer"].Value.ToString();
-                }
+                txtStudentId.Text = row.Cells["id"].Value.ToString(); // correct
+                txtStudentName.Text = row.Cells["name"].Value.ToString(); // correct
+                cmbCourse.Text = row.Cells["course"].Value.ToString(); // correct
             }
         }
+
 
         private void ClearForm()
         {
@@ -295,23 +300,39 @@ namespace FinalAssignment_CSharp.ControlViews
 
         private void ManageMarksUserControl_Load(object sender, EventArgs e)
         {
-            LoadCourses();
-            LoadMarks();
+            LoadCoursesIntoComboBox();
+            LoadStudents();
+            LoadCoursesIntoComboBox();
+            //LoadMarks();
         }
 
-        private void LoadCourses()
+        private void LoadStudents()
+        {
+            string query = "SELECT id, name, course FROM students";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            dataGridStudents.DataSource = dt;
+        }
+
+        private void LoadCoursesIntoComboBox()
         {
             cmbCourse.Items.Clear();
             string query = "SELECT course_name FROM courses";
             SQLiteCommand cmd = new SQLiteCommand(query, connection);
+
             connection.Open();
-            SQLiteDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            using (SQLiteDataReader reader = cmd.ExecuteReader())
             {
-                cmbCourse.Items.Add(reader["course_name"].ToString());
+                while (reader.Read())
+                {
+                    cmbCourse.Items.Add(reader["course_name"].ToString());
+                }
             }
             connection.Close();
         }
+
+
 
         private void LoadMarks()
         {
